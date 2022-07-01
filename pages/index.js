@@ -8,7 +8,7 @@ const HomePage = (props) => {
   return (
     <>
       <Head>
-        <title>Meetups list</title>
+        <title>Meetups list in Springfield</title>
         <meta name="description" content="Meetups list to search mel" />
       </Head>
       <MeetupList meetups={props.meetups} />
