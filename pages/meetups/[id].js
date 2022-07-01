@@ -63,7 +63,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: meetups,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
