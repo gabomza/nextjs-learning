@@ -1,6 +1,8 @@
 import { MongoClient } from "mongodb";
 import Head from "next/head";
 import MeetupList from "../components/meetups/MeetupList";
+import { Variables } from "../utils/variables";
+const { MONGO_DB_URI } = Variables;
 
 const HomePage = (props) => {
   return (
@@ -15,10 +17,7 @@ const HomePage = (props) => {
 };
 
 export const getStaticProps = async () => {
-  const mongoDbUri =
-    "mongodb+srv://gaboguzman:HiL6DcgoHS4fZ1zr@cluster0.qtrft.mongodb.net/?retryWrites=true&w=majority";
-
-  const client = new MongoClient(mongoDbUri);
+  const client = new MongoClient(MONGO_DB_URI);
   const connection = await client.connect();
   const db = connection.db("meetups");
   const collection = db.collection("meetups");

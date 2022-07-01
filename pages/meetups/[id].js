@@ -1,12 +1,15 @@
 import { MongoClient, ObjectId } from "mongodb";
 import Head from "next/head";
 import MeetupCard from "../../components/meetups/MeetupCard";
+import { Variables } from "../../utils/variables";
+const { MONGO_DB_URI } = Variables;
 
 const MeetupDetailsPage = (props) => {
+  const title = `Meetup detail for: ${props.meetupData.title}`;
   return (
     <>
       <Head>
-        <title>Meetup detail for: {props.meetupData.title}</title>
+        <title>{title}</title>
         <meta
           name="description"
           content="Meetups description and extra information"
@@ -18,9 +21,7 @@ const MeetupDetailsPage = (props) => {
 };
 
 const getDbCollection = async () => {
-  const mongoDbUri =
-    "mongodb+srv://gaboguzman:HiL6DcgoHS4fZ1zr@cluster0.qtrft.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(mongoDbUri);
+  const client = new MongoClient(MONGO_DB_URI);
   const connection = await client.connect();
   const db = connection.db("meetups");
   const collection = db.collection("meetups");
